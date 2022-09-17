@@ -6,7 +6,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          changed <code>src/App.js</code>from node.
+          from feature <code>src/App.js</code>from node.
         </p>
         <a
           className="App-link"
