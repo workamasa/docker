@@ -23,5 +23,6 @@ jobs:
         application_name: Docker
         environment_name: Docker-env-1
         existing_bucket_name: elasticbeanstalk-us-east-1-451613728407
-        version_label: 12345
+        region: us-east-1
+        version_label: ${{ github.sha }}
         deployment_package: deploy.zip
