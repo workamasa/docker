@@ -11,3 +11,17 @@ jobs:
     # - run: docker login -u ${{secrets.DOCKER_USERNAME}} - p ${{secrets.DOCKER_PASSWORD}}
     - run: docker build -t amasaabu/react-test -f Dockerfile.dev .
     - run: docker run -e CI=true amasaabu/react-test npm test
+
+    - name: Generate deploymentt package
+      run: zip -r deploy.zip . -x '*.git'
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v18
+      with:
+        aws_access_keys: ${{secrets.AWS_ACCESS_KEY}}
+        aws_secret_key: ${{secrets.AWS_SECRETE_ACCESS_KEY}}
+        application_name: Docker
+        environment_name: Docker-env-1
+        existing_bucket_name: elasticbeanstalk-us-east-1-451613728407
+        version_label: 12345
+        deployment_package: deploy.zip
